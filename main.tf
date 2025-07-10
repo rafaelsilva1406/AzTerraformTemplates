@@ -1,26 +1,40 @@
 # main.tf
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~>3.0"
-    }
-  }
-  required_version = ">= 0.14.9"
-}
 
-provider "azurerm" {
-  features {}
-}
-
+# Create resource
 resource "azurerm_resource_group" "rg" {
-  name     = "sandbox1"
-  location = "westus"
+  name     = var.resource_group_name_prefix
+  location = var.resource_group_location
   tags = {
     environment = "dev"
     source      = "Terraform"
     owner       = "terraform"
   }
+}
+
+# Create storage account
+resource "azurerm_storage_account" "storage_account" {
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+
+  name = "portfolioblobrs"
+
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  account_kind             = "StorageV2"
+
+  static_website {
+    index_document = "index.html"
+  }
+}
+
+# Create container for index.html file
+resource "azurerm_storage_blob" "webapp" {
+  name                   = "index.html"
+  storage_account_name   = azurerm_storage_account.storage_account.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  content_type           = "text/html"
+  source                 = "index.html"
 }
 
 # Create the Linux App Service Plan
