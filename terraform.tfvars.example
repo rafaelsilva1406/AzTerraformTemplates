@@ -1,0 +1,20 @@
+# Example terraform.tfvars file
+# Copy this file to terraform.tfvars and customize the values
+
+# Resource Group Configuration
+resource_group_location = "eastus"
+resource_group_name_prefix = "my-portfolio"
+
+# Storage Account Configuration
+storage_account_name = "mystaticwebsite123"
+
+# App Service Configuration
+app_service_plan_name = "my-app-service-plan"
+web_app_name = "my-nodejs-app"
+
+# GitHub Repository Configuration
+github_repo_url = "https://github.com/yourusername/your-nodejs-repo"
+github_branch = "main"
+
+# Application Insights Configuration
+app_insights_name = "my-app-insights" 
