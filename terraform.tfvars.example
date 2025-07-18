@@ -7,6 +7,7 @@ resource_group_name_prefix = "my-portfolio"
 
 # Storage Account Configuration
 storage_account_name = "mystaticwebsite123"
+storage_container_name = "$web"
 
 # App Service Configuration
 app_service_plan_name = "my-app-service-plan"

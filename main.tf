@@ -39,7 +39,7 @@ resource "azurerm_storage_account" "storage_account" {
 resource "azurerm_storage_blob" "webapp" {
   name                   = "index.html"
   storage_account_name   = azurerm_storage_account.storage_account.name
-  storage_container_name = "$web"
+  storage_container_name = var.storage_container_name
   type                   = "Block"
   content_type           = "text/html"
   source                 = "index.html"

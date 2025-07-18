@@ -16,6 +16,12 @@ variable "storage_account_name" {
   default     = "portfolioblobrs"
 }
 
+variable "storage_container_name" {
+  type        = string
+  description = "Name of the storage container for static website files."
+  default     = "$web"
+}
+
 variable "app_service_plan_name" {
   type        = string
   description = "Name of the App Service Plan."
